@@ -30,6 +30,11 @@
 		],
         "description": "A case statement."
 	},
+    "Datatype declaration": {
+        "prefix": "datatype",
+        "body": [ "datatype ${1:data_type} = ${2:R1} | ${3:R2}"],
+        "description": "Datatype declaration block."
+      },
     "Signature" : {
         "prefix": "signature",
         "body": [
@@ -86,6 +91,14 @@
             "else ${3:C2}"
         ],
         "description":"An if/else block."
+    },
+    "Handle statement": {
+        "prefix": "handle",
+        "body": ["handle", 
+                "  ${1:P1} => ${2:R1}", 
+                "| ${3:P2} => ${4:R2}"
+                ],
+        "description":"A handle expression." 
     },
     "Print statement": {
         "prefix": "print",

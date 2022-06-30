@@ -6,17 +6,25 @@
     "publisher": "gulnazserikbay",
     "icon": "./media/logo.png",
     "engines": {
-        "vscode": "^1.68.0"
+        "vscode": "^1.67.0" 
     },
     "categories": [
         "Programming Languages", 
         "Snippets",
         "Other"
     ],
+    "keywords": [
+        "SML",
+        "Standard ML"
+      ],
     "activationEvents": [
 		"onLanguage:sml"
 	],
 	"main": "./src/extension.js",
+    "repository": {
+		"type": "git",
+		"url": "https://github.com/GulnazSerikbay/smlunity"
+	},
     "contributes": {
         "commands": [
             {
