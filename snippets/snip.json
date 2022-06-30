@@ -1,0 +1,108 @@
+{
+	"Let": {
+		"prefix": "let",
+		"body": [
+			"let",
+            "\t${1:bindings}",
+			"in",
+			"\t${2:body}",
+			"end"
+		],
+        "description": "A let block."
+	},
+    "Local": {
+		"prefix": "local",
+		"body": [
+			"local",
+            "\t${1:bindings}",
+			"in",
+			"\t${2:body}",
+			"end"
+		],
+        "description": "A block for local declarations."
+	},
+    "Case": {
+		"prefix": ["case", "case of"],
+		"body": [
+			"case $1 of",
+			"\t$2 => $3",
+			"| $4 => $5"
+		],
+        "description": "A case statement."
+	},
+    "Signature" : {
+        "prefix": "signature",
+        "body": [
+            "signature ${1:SIGNATURE} =",
+            "sig",
+            "\t${2:body}",
+            "end"
+        ],
+        "description": "A signature declaration."
+
+    },
+    "Structure Declaration" : {
+        "prefix": "structure",
+        "body": [
+            "structure ${1:Structure} =",
+            "struct",
+            "\t${2:body}",
+            "end"
+        ],
+        "description": "A Structure declaration block"
+    },
+    "Functor Declaration": {
+        "prefix": "functor",
+        "body": [
+            "functor ${1:Functor} (${2:Param} : ${3:SIGNATURE}) =",
+            "struct",
+            "\t${4:body}",
+            "end"
+        ],
+        "description": "A Functor declaration block"
+    },
+    "Function Declaration": {
+        "prefix": ["fun"],
+        "body": [
+            "fun ${1:functionName} (${2:params}:${3:input_type}): ${4:output_type} = "
+        ],
+        "description":"A function declaration."
+    },
+    "Function Contracts": {
+        "prefix": ["function contract", "contracts", "requires", "ensures"],
+        "body": [
+            "(* ",
+            " * ${1:functionName}: ${2:inputType} -> ${3:outputType}",
+            " * REQUIRES: ",
+            " * ENSURES: ",
+            " *)"
+        ],
+        "description":"A comment block for function contracts."
+    },
+    "If/Else Statement": {
+        "prefix": ["if", "if else"],
+        "body": [
+            "if ${1:C1} then ${2:R1}",
+            "else ${3:C2}"
+        ],
+        "description":"An if/else block."
+    },
+    "Print statement": {
+        "prefix": "print",
+        "body": [
+            "val _ = print(${1:hello, world})"
+        ],
+        "description":"A print statement"
+    },
+    "String declaration": {
+        "prefix": "string",
+        "body": [
+            "val ${1:Varname}: string = ${2:init_val}"
+        ],
+        "description":"A string declaration statement"
+    }
+
+
+
+
+}

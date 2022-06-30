@@ -1,0 +1,45 @@
+{
+    "name": "smlunity",
+    "displayName": "smlunity",
+    "description": "Standard ML language support for SML",
+    "version": "0.0.1",
+    "publisher": "gulnazserikbay",
+    "icon": "./media/logo.png",
+    "engines": {
+        "vscode": "^1.68.0"
+    },
+    "categories": [
+        "Programming Languages", 
+        "Snippets",
+        "Other"
+    ],
+    "activationEvents": [
+		"onLanguage:sml"
+	],
+	"main": "./src/extension.js",
+    "contributes": {
+        "commands": [
+            {
+              "command": "hello-world.helloWorld",
+              "title": "Hello World"
+            }
+        ],
+        "languages": [{
+            "id": "sml",
+            "aliases": ["Standard ML", "sml"],
+            "extensions": [".sml .fun .sig .cm .lex .grm"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "sml",
+            "scopeName": "source.sml",
+            "path": "./syntaxes/sml.tmLanguage.json"
+        }],
+        "snippets": [
+			{
+				"language": "sml",
+				"path": "./snippets/snip.json"
+			}
+		]
+    }
+}

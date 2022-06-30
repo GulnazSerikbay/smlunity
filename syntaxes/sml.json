@@ -1,0 +1,70 @@
+{
+	"name": "Standard ML",
+	"scopeName": "source.sml",
+	"fileTypes": [
+		".sml",
+		".sig",
+		".fun"
+	],
+	"patterns": [
+		{
+			"include": "#comment"
+		},
+		{
+			"include": "#string"
+		}
+	],
+	"repository": {
+		"comment": {
+			"patterns": [
+				{
+					"include": "#commentBlock"
+				},
+				{
+					"include": "#commentDoc"
+				}
+			]
+		},
+		"commentBlock": {
+			"begin": "\\(\\*(?!\\*[^\\)])",
+			"end": "\\*\\)",
+			"name": "comment",
+			"contentName": "emphasis",
+			"patterns": [
+				{
+					"include": "#commentBlock"
+				},
+				{
+					"include": "#commentDoc"
+				}
+			]
+		},
+		"commentDoc": {
+			"begin": "\\(\\*\\*",
+			"end": "\\*\\)",
+			"name": "comment",
+			"contentName": "emphasis",
+			"patterns": [
+				{
+					"match": "\\*"
+				},
+				{
+					"include": "#comment"
+				}
+			]
+		},
+		"string": {
+			"begin": "#\"|\"",
+			"end": "\"",
+			"name": "string",
+			"patterns": [
+				{
+					"include": "#escape"
+				}
+			]
+		},
+		"escape": {
+			"match": "\\\\(?:[\\\\\"abfnrtv]|^[@-_]|[[:digit:]][[:digit:]][[:digit:]]|u[[:xdigit:]][[:xdigit:]][[:xdigit:]][[:xdigit:]])"
+		}
+	}
+}

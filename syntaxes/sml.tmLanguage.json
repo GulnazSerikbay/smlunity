@@ -1,0 +1,90 @@
+{
+	"name": "Standard ML",
+	"scopeName": "source.sml",
+	"fileTypes": [
+		".sml",
+		".sig",
+		".fun"
+	],
+	"patterns": [
+		{
+			"include": "#comment"
+		},
+		{
+			"include": "#string"
+		}
+	],
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	
+
+	"repository": {
+		"comment": {
+			"patterns": [
+				{
+					"include": "#commentBlock"
+				},
+				{
+					"include": "#commentDoc"
+				}
+			]
+		},
+		"commentBlock": {
+			"begin": "\\(\\*(?!\\*[^\\)])",
+			"end": "\\*\\)",
+			"name": "comment",
+			"contentName": "emphasis",
+			"patterns": [
+				{
+					"include": "#commentBlock"
+				},
+				{
+					"include": "#commentDoc"
+				}
+			]
+		},
+		"commentDoc": {
+			"begin": "\\(\\*\\*",
+			"end": "\\*\\)",
+			"name": "comment",
+			"contentName": "emphasis",
+			"patterns": [
+				{
+					"match": "\\*"
+				},
+				{
+					"include": "#comment"
+				}
+			]
+		},
+		"string": {
+			"begin": "#\"|\"",
+			"end": "\"",
+			"name": "string",
+			"patterns": [
+				{
+					"include": "#escape"
+				}
+			]
+		},
+		"escape": {
+			"match": "\\\\(?:[\\\\\"abfnrtv]|^[@-_]|[[:digit:]][[:digit:]][[:digit:]]|u[[:xdigit:]][[:xdigit:]][[:xdigit:]][[:xdigit:]])"
+		},
+		"keywords": {
+			"patterns": [{
+				"name": "keyword.control.sml",
+				"match": "\\b(if|while|for|return)\\b"
+			}]
+		},
+		"strings": {
+			"name": "string.quoted.double.sml",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.sml",
+					"match": "\\\\."
+				}
+			]
+		}
+	}
+}
