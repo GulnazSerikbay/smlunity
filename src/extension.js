@@ -11,31 +11,38 @@ const smlEnviron = require('./smlEnvironmentManager');
 /**
  * @param {vscode.ExtensionContext} context
  */
+
+let smlKeywords = 'andalso|as|class|do|LESS|GREATER|EQUAL|int|string|case|orelse|else|end|exception|false|fun|functor|if|in|include|let|match|method|module|mutable|of|open|rec|sig|struct|signature|then|to|true|try|type|val|when|with'.split('|');
+
 function activate(context) {
-	smlEnviron.start();
-
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
+	//smlEnviron.start();
 	console.log('Congratulations, your extension "SMLunity" is now active!');
-
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with  registerCommand
-	// The commandId parameter must match the command field in package.json
 	let disposable = vscode.commands.registerCommand('smunity.helloWorld', function () {
-		// The code you place here will be executed every time your command is executed
-
-		// Display a message box to the user
 		vscode.window.showInformationMessage('Hello World from SMLunity!');
 	});
 
 	context.subscriptions.push(disposable);
+
+    context.subscriptions.push(
+        vscode.languages.registerCompletionItemProvider(
+			{language: "sml"}, {
+            async provideCompletionItems(document, position, token) {
+                return new vscode.CompletionList(smlKeywords.map((keyword) => {
+                    let completionItem = new vscode.CompletionItem(keyword);
+                    completionItem.kind = vscode.CompletionItemKind.Keyword;
+                    return completionItem;
+                }));
+            }
+        })
+    );
+
 }
 
-exports.activate = activate;
+//exports.activate = activate;
 
 // this method is called when your extension is deactivated
 function deactivate() {
-	smlEnviron.stop();
+	//smlEnviron.stop();
 }
 
 module.exports = {
