@@ -5,9 +5,6 @@ const vscode = require('vscode');
 const smlEnviron = require('./smlEnvironmentManager');
 //import * as vscode from 'vscode';
 
-// this method is called when your extension is activated
-// your extension is activated the very first time the command is executed
-
 /**
  * @param {vscode.ExtensionContext} context
  */
@@ -18,6 +15,7 @@ const smlEnviron = require('./smlEnvironmentManager');
 
  let configuration = vscode.workspace.getConfiguration("sml");
  
+ //below is copied code from ocaml extension
  let doOcpIndent = async (document, token, range) => {
 	 let code = document.getText();
 	 let ocpIndentPath = configuration.get<string>('ocpIndentPath');
@@ -65,6 +63,7 @@ const smlEnviron = require('./smlEnvironmentManager');
 	 return edits;
  };
 
+ //saving basic keywords here
 let smlTypes  = 'bool,int,real,string,char,word,list,ref,exn}'.split(',');
 let smlKeywords = 'andalso,and,as,abstype,eqtype,datatype,do,div,handle,LESS,GREATER,EQUAL,int,string,case,orelse,else,end,exception,false,fun,functor,if,in,infix,infixr,include,match,method,mod,mutable,NONE,not,nonfix,nil,of,op,open,raise,rec,ref,sig,struct,signature,sharing,SOME,then,to,true,try,type,val,when,where,while,with,withtype'.split(',');
 let reservedModule = 'eqtype,functor,include,sharing,sig,signature,struct,structure,where,:>'.split(',');
@@ -94,6 +93,7 @@ function activate(context) {
         })
     );
 
+    //below is for autocompletion, copied code from ocaml extension
 	context.subscriptions.push(
         vscode.languages.registerCompletionItemProvider({language: 'sml'}, {
             async provideCompletionItems(document, position, token) {
@@ -157,7 +157,7 @@ function activate(context) {
         })
     );
 
-
+    // learning to do hovers, for now error checking for 'and'(must be 'andalso')
     context.subscriptions.push(
         vscode.languages.registerHoverProvider("sml", {
             async provideHover(document, position, token) {
@@ -183,7 +183,12 @@ function deactivate() {
 	//smlEnviron.stop();
 }
 
+
+
 module.exports = {
 	activate,
 	deactivate
 }
+
+/* Notes: made snippets in snippets/snip.json, must be checked for usability
+*/

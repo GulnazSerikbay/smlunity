@@ -3,9 +3,9 @@
 		"prefix": "let",
 		"body": [
 			"let",
-            "\t${1:bindings}",
+            "\t${1:}",
 			"in",
-			"\t${2:body}",
+			"\t${2:}",
 			"end"
 		],
         "description": "A let block."
@@ -14,9 +14,9 @@
 		"prefix": "local",
 		"body": [
 			"local",
-            "\t${1:bindings}",
+            "\t${1:}",
 			"in",
-			"\t${2:body}",
+			"\t${2:}",
 			"end"
 		],
         "description": "A block for local declarations."
@@ -125,7 +125,7 @@
     "Print statement": {
         "prefix": "print",
         "body": [
-            "val _ = print(${1:hello, world})"
+            "val _ = print(${1:})"
         ],
         "description":"A print statement"
     },
