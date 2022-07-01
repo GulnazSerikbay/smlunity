@@ -21,20 +21,42 @@
 		],
         "description": "A block for local declarations."
 	},
+    "Struct Decl": {
+		"prefix": "struct",
+		"body": [
+			"struct",
+            "\t${1:decl}",
+			"end"
+		],
+        "description": "Struct declaration block."
+	},
     "Case": {
 		"prefix": ["case", "case of"],
 		"body": [
-			"case $1 of",
-			"\t$2 => $3",
-			"| $4 => $5"
+			"case ${1:exp} of",
+			"\t${2:P1} => $3",
+			"| ${4:P2} => $5"
 		],
         "description": "A case statement."
+	},
+    "While": {
+		"prefix": ["while", "while do"],
+		"body": [
+			"while ${1:exp1} do ${2:exp2} "
+		],
+        "description": "A while loop."
 	},
     "Datatype declaration": {
         "prefix": "datatype",
         "body": [ "datatype ${1:data_type} = ${2:R1} | ${3:R2}"],
         "description": "Datatype declaration block."
       },
+    "Abstype": {
+        "prefix": "abstype",
+        "body": [ "abstype ${1:datbind} withtype ${2:typbind}",
+                  "\twith ${3:dec} end" ],
+        "description": "Abstype declaration."
+    },
     "Signature" : {
         "prefix": "signature",
         "body": [
@@ -69,7 +91,7 @@
     "Function Declaration": {
         "prefix": ["fun"],
         "body": [
-            "fun ${1:functionName} (${2:params}:${3:input_type}): ${4:output_type} = "
+            "fun ${1:functionName} (${2:params}:${3:input_type})${4:: output_type} = "
         ],
         "description":"A function declaration."
     },
