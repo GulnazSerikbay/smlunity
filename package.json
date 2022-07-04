@@ -18,7 +18,8 @@
         "Standard ML"
       ],
     "activationEvents": [
-		"onLanguage:sml"
+		"onLanguage:sml",
+        "onCommand:startSML"
 	],
 	"main": "./src/extension.js",
     "repository": {
@@ -27,11 +28,16 @@
 	},
     "contributes": {
         "commands": [
-            {
-              "command": "hello-world.helloWorld",
-              "title": "Hello World"
-            }
+			{
+				"command": "restart",
+				"title": "Restart SML"
+			},
+			{
+				"command": "runMake",
+				"title": "run SML Makefile"
+			}
         ],
+
         "languages": [{
             "id": "sml",
             "aliases": ["Standard ML", "sml"],
@@ -48,6 +54,44 @@
 				"language": "sml",
 				"path": "./snippets/snip.json"
 			}
-		]
+		],
+        "keybindings": [
+			{
+				"key": "shift+c",
+				"command": "editor.action.insertSnippet",
+				"when": "editorTextFocus",
+				"args": {
+					"langId": "sml",
+					"name": "Function Contracts"
+				  }
+			},
+			{
+				"key": "shift+f+c",
+				"command": "editor.action.insertSnippet",
+				"when": "editorTextFocus",
+				"args": {
+					"langId": "sml",
+					"name": "Function Contracts"
+				  }
+			},
+            {
+				"key": "cmd+1",
+				"command": "workbench.action.terminal.sendSequence",
+				"args": {
+					"text": "sml\u000D"
+				  }
+			}
+		],
+        "configuration": {
+			"title": "SML Environment",
+			"properties": {
+				"sml-path": {
+					"type": "string",
+					"title": "SML interpreter path",
+					"default": "sml",
+					"$comment": "Usually sml or smlnj"
+				}
+			}
+		}
     }
 }

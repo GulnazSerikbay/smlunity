@@ -7,12 +7,15 @@
 		".fun"
 	],
 	"patterns": [
-		{
-			"include": "#comment"
-		},
-		{
-			"include": "#string"
-		}
+		{ "include": "#comment" },
+		{ "include": "#string"	},
+		{ "include": "#decInt" },
+		{ "include": "#hexInt" },
+		{ "include": "#decWord" },
+		{ "include": "#hexWord" },
+		{ "include": "#real" },
+		{ "include": "#char" },
+		{ "include": "#otherKeyword" }
 	],
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
 	
@@ -20,12 +23,8 @@
 	"repository": {
 		"comment": {
 			"patterns": [
-				{
-					"include": "#commentBlock"
-				},
-				{
-					"include": "#commentDoc"
-				}
+				{ "include": "#commentBlock" },
+				{ "include": "#commentDoc" }
 			]
 		},
 		"commentBlock": {
@@ -34,12 +33,8 @@
 			"name": "comment",
 			"contentName": "emphasis",
 			"patterns": [
-				{
-					"include": "#commentBlock"
-				},
-				{
-					"include": "#commentDoc"
-				}
+				{ "include": "#commentBlock" },
+				{ "include": "#commentDoc" }
 			]
 		},
 		"commentDoc": {
@@ -48,12 +43,8 @@
 			"name": "comment",
 			"contentName": "emphasis",
 			"patterns": [
-				{
-					"match": "\\*"
-				},
-				{
-					"include": "#comment"
-				}
+				{ "match": "\\*" },
+				{	"include": "#comment" }
 			]
 		},
 		"string": {
@@ -61,10 +52,34 @@
 			"end": "\"",
 			"name": "string",
 			"patterns": [
-				{
-					"include": "#escape"
-				}
+				{ "include": "#escape"	}
 			]
+		},
+		"decInt": {
+			"name": "constant.numeric.integer.decimal.sml",
+			"match": "(\\b|~)[0-9]+\\b"
+		},
+		"hexInt": {
+		"name": "constant.numeric.integer.hexadecimal.sml",
+		"match": "(\\b|~)0x[0-9A-Fa-f]+\\b"
+		},
+		"decWord": {
+		"name": "constant.numeric.word.decimal.sml",
+		"match": "\\b0w[0-9]+\\b"
+		},
+		"hexWord": {
+		"name": "constant.numeric.word.hexadecimal.sml",
+		"match": "\\b0wx[0-9A-Fa-f]+\\b"
+		},
+		"real": {
+		"name": "constant.numeric.float.decimal.sml",
+		"match": "(\\b|~)[0-9]+\\.[0-9]+([Ee]~?[0-9]+)?\\b"
+		},
+		"char": {
+		"name": "string.quoted.double.sml",
+		"begin": "#\"",
+		"end": "\"",
+		"patterns": [{ "include": "#escape" }]
 		},
 		"escape": {
 			"match": "\\\\(?:[\\\\\"abfnrtv]|^[@-_]|[[:digit:]][[:digit:]][[:digit:]]|u[[:xdigit:]][[:xdigit:]][[:xdigit:]][[:xdigit:]])"
@@ -72,9 +87,14 @@
 		"keywords": {
 			"patterns": [{
 				"name": "keyword.control.sml",
-				"match": "\\b(if|while|for|return)\\b"
+				"match": "\\b(return|andalso|as|case|do|else|fn|for|handle|if|of|op|orelse|raise|then|while)\\b"
 			}]
 		},
+		"otherKeyword": {
+			"name": "keyword.other.sml",
+			"match": "\\b(abstype|and|datatype|end|eqtype|exception|fun|functor|in|include|infix|infixr|let|local|nonfix|open|rec|sharing|sig|signature|struct|structure|type|val|where|with|withtype)\\b"
+		},
+
 		"strings": {
 			"name": "string.quoted.double.sml",
 			"begin": "\"",

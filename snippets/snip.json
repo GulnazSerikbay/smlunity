@@ -53,8 +53,8 @@
       },
     "Abstype": {
         "prefix": "abstype",
-        "body": [ "abstype ${1:datbind} withtype ${2:typbind}",
-                  "\twith ${3:dec} end" ],
+        "body": [ "abstype ${1:} withtype ${2:}",
+                  "\twith ${3:} end" ],
         "description": "Abstype declaration."
     },
     "Signature" : {
@@ -132,7 +132,7 @@
     "String declaration": {
         "prefix": "string",
         "body": [
-            "val ${1:Varname}: string = ${2:init_val}"
+            "val ${1:varName}: string = ${2:init_val}"
         ],
         "description":"A string declaration statement"
     }
