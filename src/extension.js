@@ -3,6 +3,7 @@
 const vscode = require('vscode');
 const fs = require('fs');
 const path = require('path');
+const { flatten } = require('cheerio/lib/options');
 const spawn = require("child_process").spawn;
 
 
